@@ -24,10 +24,8 @@ export default function RootLayout({ children }) {
             />
             <h1 className="text-5xl">Knowledge Base</h1>
           </div>
-          <h1>Navbar</h1>
         </header>
-
-        
+        <h1>Navbar</h1>
         <div className="h-[calc(100vh-5rem)]">{children}</div>
       </body>
     </html>

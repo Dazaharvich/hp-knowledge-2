@@ -1,5 +1,8 @@
 "use client";
-import { useState } from "react";
+import { setLazyProp } from "next/dist/server/api-utils";
+import { useState,useRef } from "react";
+import axios from "axios";
+
 
 function ProductForm() {
   const [caso, setcaso] = useState({
@@ -8,33 +11,61 @@ function ProductForm() {
     solution: "",
   });
 
+  const form = useRef(null);
+
   const handleChange = (e) => {
-    console.log(e);
+    setcaso({
+      ...caso,
+      [e.target.name]: e.target.value
+    })
+  };
+
+  const handleSubmit = async (e) =>{
+    e.preventDefault();
+    const res = await axios.post('/api/cases', caso)
+    console.log(res);
+    form.current.reset();
   };
 
   return (
-    <form className="bg-white shadow-md rounded-md px-8 pt-6 pb-8 mb4">
-      <label htmlFor="title" className="block text-gray-700 text-sm font-bold mb-2">Titulo</label>
-      <input 
-      type="text" 
-      placeholder="Ingrese título" 
-      className="shadow appearance-none border rounded max-w-md py-2 px-3" onChange={handleChange} />
+    <form className="border-r-indigo-200 max-w-md shadow-md rounded-md px-8 pt-6 pb-8 mb4"
+    onSubmit={handleSubmit}
+    ref={form}>
+      <label
+        htmlFor="title"
+        className="block text-gray-700 text-sm font-bold mb-2"
+      >
+        Titulo
+      </label>
+      <input
+        name="title"
+        type="text"
+        placeholder="Ingrese título"
+        className="shadow appearance-none border rounded text-gray-700 w-full py-2 px-3"
+        onChange={handleChange}
+      />
 
       <label htmlFor="description">Descripción</label>
-      <input
-        type="text"
+      <textarea
+        name="description"
+        rows={3}
         placeholder="Ingrese Descripción"
         onChange={handleChange}
-        className="shadow appearance-none border rounded max-w-md  py-2 px-3"
+        className="shadow appearance-none border rounded text-gray-700 w-full  py-2 px-3"
       />
 
       <label htmlFor="solution">Solución</label>
-      <input
-        type="text"
+      <textarea
+        name="solution"
+        rows={3}
         placeholder="Ingrese Solución"
         onChange={handleChange}
-        className="shadow appearance-none border rounded max-w-md py-2 px-3"
+        className="shadow appearance-none border rounded text-gray-700 w-full py-2 px-3"
       />
+
+      <button className="bg-blue-500 hover:bg-blue-700 hover:border-b-neutral-400 text-white font-bold py-4 px-6 mt-4 rounded">
+        Guardar Caso
+      </button>
     </form>
   );
 }
