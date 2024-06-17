@@ -17,7 +17,7 @@ async function CasePage({ params }) {
     <p className="border-solid rounded mb-6 px-4">{caso.description}</p>
     <h2 className="text-3xl font-bold mb-6 px-2">Solución:</h2>
     <p className="border-solid rounded bg-slate-300 py-2 px-4 mb-6">{caso.solution}</p>
-    <Buttons />
+    <Buttons casoId={caso.id} />
   </div>
   );
 }
