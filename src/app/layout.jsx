@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <header className="flex-auto justify-center items-center text-center">
+        <header className="flex-auto justify-center items-center text-center pb-12">
           <div className="flex-auto justify-center items-center md:flex-auto">
             <Image
               className="max-w-full h-auto"
@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
           </div>
         </header>
         <h1>Navbar</h1>
-        <div className="h-[calc(100vh-5rem)]">{children}</div>
+        <div className="h-[calc(100vh-5rem)] container mx-auto">{children}</div>
       </body>
     </html>
   );

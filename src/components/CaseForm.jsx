@@ -2,9 +2,11 @@
 import { setLazyProp } from "next/dist/server/api-utils";
 import { useState,useRef } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 
-function ProductForm() {
+
+function CaseForm() {
   const [caso, setcaso] = useState({
     title: "",
     description: "",
@@ -12,6 +14,7 @@ function ProductForm() {
   });
 
   const form = useRef(null);
+  const router = useRouter();
 
   const handleChange = (e) => {
     setcaso({
@@ -25,6 +28,7 @@ function ProductForm() {
     const res = await axios.post('/api/cases', caso)
     console.log(res);
     form.current.reset();
+    router.push('/')
   };
 
   return (
@@ -43,6 +47,7 @@ function ProductForm() {
         placeholder="Ingrese título"
         className="shadow appearance-none border rounded text-gray-700 w-full py-2 px-3"
         onChange={handleChange}
+        autoFocus
       />
 
       <label htmlFor="description">Descripción</label>
@@ -70,4 +75,4 @@ function ProductForm() {
   );
 }
 
-export default ProductForm;
+export default CaseForm;
