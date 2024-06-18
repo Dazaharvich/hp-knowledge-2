@@ -2,7 +2,7 @@
 import { setLazyProp } from "next/dist/server/api-utils";
 import { useState,useRef } from "react";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 
 
 
@@ -15,6 +15,8 @@ function CaseForm() {
 
   const form = useRef(null);
   const router = useRouter();
+  const params = useParams();
+  console.log(params);
 
   const handleChange = (e) => {
     setcaso({
