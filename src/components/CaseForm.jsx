@@ -1,6 +1,6 @@
 "use client";
-import { setLazyProp } from "next/dist/server/api-utils";
-import { useState,useRef } from "react";
+
+import { useState,useRef, useEffect } from "react";
 import axios from "axios";
 import { useRouter, useParams } from "next/navigation";
 
@@ -16,7 +16,6 @@ function CaseForm() {
   const form = useRef(null);
   const router = useRouter();
   const params = useParams();
-  console.log(params);
 
   const handleChange = (e) => {
     setcaso({
@@ -24,6 +23,21 @@ function CaseForm() {
       [e.target.name]: e.target.value
     })
   };
+
+  useEffect(() => {
+    if (params.id){
+      axios.get('/api/cases/' + params.id)
+      .then(res => {
+        setcaso({
+          title: res.data.title,
+          description: res.data.description,
+          solution: res.data.solution,
+        })
+      })
+    }
+
+  }, []);
+  
 
   const handleSubmit = async (e) =>{
     e.preventDefault();
@@ -46,6 +60,7 @@ function CaseForm() {
       <input
         name="title"
         type="text"
+        value={caso.title}
         placeholder="Ingrese título"
         className="shadow appearance-none border rounded text-gray-700 w-full py-2 px-3"
         onChange={handleChange}
@@ -55,6 +70,7 @@ function CaseForm() {
       <label htmlFor="description">Descripción</label>
       <textarea
         name="description"
+        value={caso.description}
         rows={3}
         placeholder="Ingrese Descripción"
         onChange={handleChange}
@@ -64,6 +80,7 @@ function CaseForm() {
       <label htmlFor="solution">Solución</label>
       <textarea
         name="solution"
+        value={caso.solution}
         rows={3}
         placeholder="Ingrese Solución"
         onChange={handleChange}
