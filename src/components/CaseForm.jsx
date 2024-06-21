@@ -41,10 +41,19 @@ function CaseForm() {
 
   const handleSubmit = async (e) =>{
     e.preventDefault();
-    const res = await axios.post('/api/cases', caso)
+
+    if (!params.id) {
+    const res = await axios.post('/api/cases', caso);
     console.log(res);
     form.current.reset();
-    router.push('/')
+    } else {
+      await axios.put('/api/cases/' + params.id, caso);
+      console.log(caso);
+      console.log("editando");
+    }
+
+    router.refresh();
+    router.push('/');
   };
 
   return (
