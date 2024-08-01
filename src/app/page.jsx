@@ -5,7 +5,7 @@ import { pool } from "@/libs/mysql";
 //llamado API
 async function loadCases() {
   const result = await pool.query('SELECT * FROM cases');
-  console.log(result);
+  //console.log(result);
 };
 
 function HomePage() {

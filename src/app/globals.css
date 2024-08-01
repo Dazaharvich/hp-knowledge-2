@@ -7,7 +7,7 @@ body{
   color: white;
   display: flex;
   flex-direction: column;
-  background-color: darkgray;
+  background-color: #232526;
 }
 
 header{
@@ -15,4 +15,5 @@ header{
   color: white;
   display: flex;
   flex-direction: column;
+  
 }

@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Image from "next/image";
+//import "../styles/title.css";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -20,10 +21,11 @@ export default function RootLayout({ children }) {
               className="max-w-full h-auto"
               src="/images/hplus-logo.png"
               alt="Hplus Logo"
-              width={500}
-              height={200}
+              width={400}
+              height={100}
             />
-            <h1 className="text-5xl">Knowledge Base</h1>
+            <div className=""><title className="text-4xl">Knowledge Base</title></div>
+            
           </div>
         </header>
         <h1>Navbar</h1>

@@ -83,14 +83,16 @@ export async function PUT(request, { params }) {
     }
 
     const updatedCase = await pool.query(
-      "SELECT * FROM cases WHERE id = ?"[params.id]
+      "SELECT * FROM cases WHERE id = ?",[params.id]
     );
 
     return NextResponse.json(updatedCase[0]);
   } catch (error) {
+    console.error("Error en PUT /api/cases/:id", error);
     return NextResponse.json(
       {
-        message: error.message,
+        message: "Error interno del servidor",
+        error: error.message,
       },
       {
         status: 500,
