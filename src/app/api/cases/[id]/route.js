@@ -65,9 +65,37 @@ export async function DELETE(request, { params }) {
 
 export async function PUT(request, { params }) {
   try {
-    const data = await request.json();
+    const data = await request.formData();
+
+    if (!data.get("name")){
+      return NextResponse.json(
+        {
+          message: "Título es requerido",
+        },
+      {
+        status: 400,
+      }
+      );
+    }
+
+    if (!data.get("image")) {
+      return NextResponse.json(
+        {
+          message: "Imagen es requerida",
+        },
+        {
+          status: 400,
+        }
+      );
+    };
+
+
     const result = await pool.query("UPDATE cases SET ? WHERE id = ?", [
-      data,
+      {
+        name: data.get("name"),
+        description: data.get("description"),
+        solution: data.get("solution"),
+      },
       params.id,
     ]);
 

@@ -60,7 +60,7 @@ function CaseForm() {
   useEffect(() => {
     if (params.id) {
       axios
-        .get("/api/cases/" + params.id)
+        .get(`/api/cases/${params.id}`)
         .then((res) => {
           setCaso({
             title: res.data.title,
@@ -83,6 +83,7 @@ function CaseForm() {
       formData.append('name', caso.title);
       formData.append('description', caso.description);
       formData.append('solution', caso.solution);
+
       if (file) formData.append('image', file);
 
       if (params.id) {
