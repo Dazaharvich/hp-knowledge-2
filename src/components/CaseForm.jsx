@@ -16,7 +16,7 @@ function CaseForm() {
   const [caso, setCaso] = useState({
     title: "",
     description: "",
-    solution: "",
+    solution: ""
   });
 
   const [file, setFile] = useState(null);
@@ -38,6 +38,7 @@ function CaseForm() {
       ...caso,
       [e.target.name]: e.target.value,
     });
+
   };
 
   const handleDescriptionChange = (value) => {
@@ -194,7 +195,7 @@ function CaseForm() {
         />
  */}
 
-        <label
+        {/* <label
           htmlFor="image"
           className="block text-slate-300 text-xl font-bold mx-2 my-5"
         >
@@ -206,22 +207,23 @@ function CaseForm() {
           className="shadow appearance-none border rounded text-gray-700 w-full py-2 px-3"
           onChange={(e) => setFile(e.target.files[0])}
         />
-
+ */}
         <button
           type="submit"
-          className="bg-blue-500 hover:bg-blue-700 hover:border-b-neutral-400 text-white font-bold py-4 px-6 mt-4 rounded"
+          className="bg-[#0634b6] hover:bg-blue-700 hover:border-b-neutral-400 text-white font-bold py-4 px-6 mt-5 rounded-xl"
         >
           {params.id ? "Actualizar Caso" : "Crear Caso"}
         </button>
       </form>
 
-      <div className="pb-5 pt-5">
+      {/*  <div className="pb-5 pt-5">
       {file && <img 
       className="w-96 object-contain mx-auto"
       src={URL.createObjectURL(file)} alt="" />}
-      </div>
-    </div>
+      </div>*/}
+
+    </div>  
+    
   );
 }
-
 export default CaseForm;

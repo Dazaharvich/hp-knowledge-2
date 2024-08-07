@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Image from "next/image";
 //import "../styles/title.css";
+import Navbar from "@/components/Navbar";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -28,8 +29,8 @@ export default function RootLayout({ children }) {
             
           </div>
         </header>
-        <h1>Navbar</h1>
-        <div className="h-[calc(100vh-5rem)] container mx-auto">{children}</div>
+        <Navbar />
+        <div className="h-auto container mx-auto border-r-cyan-200 shadow-cust-xl rounded-md px-8 pt-6 pb-4 flex-col ">{children}</div>
       </body>
     </html>
   );
